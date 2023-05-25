@@ -96,10 +96,11 @@ conda install -c huggingface transformers
 pip install git+https://github.com/huggingface/accelerate
 ```
 Do not forget to launch `accelerate config` in the terminal in order to configure you environment, for more the details see [accelerate](https://github.com/huggingface/accelerate).
+
 We will also need [`rouge-score`](https://github.com/google-research/google-research/tree/master/rouge)
+
 ```bash
 pip install rouge-score
-pip install sentence-transformers
 ```
 Now we are ready to clone the repository and to start working 
 ```bash
