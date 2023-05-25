@@ -21,13 +21,18 @@ This repository is dedicated to [Self-instruct](https://arxiv.org/pdf/2212.10560
     - [The prompting format](#the-prompting-format)
     - [The trigger words](#the-trigger-words)
     - [The post-processing](#the-post-processing)
+        - [Self-consistency](#self-consistency)
+        - [Uniqueness](#uniqueness)
 5. [Quickstart](#quickstart)
     - [Step by step installation with conda](#step-by-step-installation-with-conda)
     - [Instruction-output](#instruction-output)
     - [Instruction-input-output](#instruction-input-output)
     - [Post-processing](#post-processing)
+        - [Self-consistency](#self-consistency)
+        - [Uniqueness](#uniqueness)
     - [Visualization and statistics](#visualization-and-statistics)
 6. [Fine-tuning](#fine-tuning)
+7. [Acknowledgements](#acknowledgments)
 
 # Overview
 Self-instruct is an iterative method that helps LM improve their ability to follow natural language instructions. The idea is to use a seed set of manually-written instructions and use them to prompt the model to generate new instructions and their corresponding input-output instances. The method includes a filtering step to ensure the novelty of the generated task.
@@ -164,7 +169,7 @@ This part requires an additional requirement, that is [sentence-transformers](ht
 ```bash
 pip install -U sentence-transformers
 ```
-- Self-consistency
+### Self-consistency
 
 Here, we run the file `output_instruction.py` with the help of `accelerate`
 ```bash
@@ -179,7 +184,7 @@ accelerate launch instruction_io/output_instruction.py \
 ```
 It will create a file `regen.jsonl` into `batch_dir`.
 
-- Unique
+### Uniqueness
 
 Here we want to apply a post-processing to our generated instructions by considering only instructions that are not too similar. In order to do so, we get into the folder `self-instruct` and we launch
 
@@ -203,3 +208,9 @@ Now, it is possible to run the notebook `instruction_visualize.ipynb`. We also p
 # Fine-Tuning
 
 Now that the dataset is available, we can fine-tune our favorite text/code LLM to make it follow instructions. Our choice is naturally towards StarCoder. This [repository](https://github.com/bigcode-project/starcoder) gives a comprehensive method that can be used to fine-tune starcoder on any instruction dataset available on the hub.
+
+# Acknowledgements
+
+- [The original self-instruct method](https://github.com/yizhongw/self-instruct)
+- [Stanford's Alpaca](https://github.com/tatsu-lab/stanford_alpaca)
+- [Code Alpaca](https://github.com/sahil280114/codealpaca)
