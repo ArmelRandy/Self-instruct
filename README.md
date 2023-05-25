@@ -1,4 +1,4 @@
-# Self-instruct
+# Self-instruct 🤗
 A repository to perform self-instruct with a model on HF Hub
 
 # What is this about?
@@ -10,7 +10,7 @@ This repository is dedicated to [Self-instruct](https://arxiv.org/pdf/2212.10560
 
 # Disclaimer
 
-- Our approach requires the availability of a significant amount of computational resources.
+- Our approach requires the availability of a good amount of computational resources.
 - We will focus on the dataset generation pipeline and the curation rather than the fine-tuning.
 - Keep in mind that the quality of the dataset obtained by this method is strongly dependent on the quality of the model that is used. 
 
@@ -30,7 +30,7 @@ This repository is dedicated to [Self-instruct](https://arxiv.org/pdf/2212.10560
 Self-instruct is an iterative method that helps LM improve their ability to follow natural language instructions. The idea is to use a seed set of manually-written instructio and use them to prompt the model to generate new instructions and their corresponding input-output instances. The method includes a filtering step to ensure the novelty of the generated task.
 
 # Related work
-Our implementation is inspired by the original [Self-instruct](https://github.com/yizhongw/self-instruct) method and recent updates including [Stanford's alpaca](https://github.com/tatsu-lab/stanford_alpaca/blob/) and [Code alpaca](https://github.com/sahil280114/codealpaca/). While the last two are identical, with the sole difference being the seed tasks used, the original work has a different mindset. As a matter of fact, self-instruct's author uses a set of seed tasks and prompt the model with some of them to make it generate instructions. Later on, the output to the generated instructions are found separately. Conversely, alpaca is all in one in the sense that the model generates instruction as well as input-output. It is prompted with the following template
+Our implementation is inspired by the original [Self-instruct](https://github.com/yizhongw/self-instruct) method and recent updates including [Stanford's alpaca](https://github.com/tatsu-lab/stanford_alpaca/blob/) and [Code alpaca](https://github.com/sahil280114/codealpaca/). While the last two are almost identical, with the sole difference being the set of seed tasks used, the original work has a different mindset. As a matter of fact, self-instruct's author uses a set of seed tasks and prompt the model with some of them to make it generate instructions. Later on, the output to the generated instructions are found separately. Conversely, alpaca is all in one in the sense that the model is prompted generates instruction as well as input-output at the same time. It uses the following template
 
 ```bash
 ### Instruction:
@@ -42,20 +42,26 @@ Our implementation is inspired by the original [Self-instruct](https://github.co
 ### Output:
 {output}
 ```
-The advantage is that this all in one template allows to reduce the inference cost of the method, and the quality of the generated instances is not proven to be significantly impaired. We believe, intuitively, that if this prompting approach generates feasible instructions thanks to the obligation to have a sound input-output pair associated to it.
+The advantage is that this all in one template allows to reduce the inference cost of the method, and the quality of the generated instances is not proven to be significantly impaired. We believe, intuitively, that this prompting approach generates feasible instructions thanks to the obligation to have a sound input-output pair associated to it.
 
 # Our approach
 
 Our approach is focused on code use cases, therefore our modifications are mostly relevant for that framework.
 
 ## The prompting format
-During our tests, we realized that, at least with "small" code models, the trigger words `Input:` and `Output:` tend to make them generate test cases instead. It is significantly impairing because given an instruction, we want a working implementation rather than a potentially buggy test case. In order to alleviate this issue, we decided to get rid of the "Input:" trigger word. We adopt an instruction-output format.
+During our tests, we realized that, at least with "small" code models, the trigger words `Input:` and `Output:` tend to make them generate test cases instead. It is significantly impairing because given an instruction, we want a working implementation rather than a potentially buggy test case. In order to alleviate this issue, we decided to get rid of the `Input:` trigger word. We adopt an instruction-output format.
 
 ## The trigger words
-Using "Instruction:", "Input:" and "Output:" seems to work well for `text-davinci-003` but how well does it work for other models? This parameter is definitely relevant for small models as this can have a huge impact. Following this intuition, we included in our code the possibility to change the trigger words that are used during the prompting. This allows to accomodate to every single model.
+Using `Instruction:`, `Input:` and `Output:` seems to work well for `text-davinci-003` but how well does it work for other models? This parameter is definitely relevant for small models as this can have a huge impact on the quality of their generations. Following this intuition, we included in our code the possibility to change the trigger words that are used during the prompting. This allows to accomodate to every single model.
 
 ## The post-processing
 How to select and post-process the instructions that are generated by prompting a model? In the original work, the instructions are generated iteratively, and we keep those with a rouge score stricly less than `0.7` with any previously generated instruction. This allows diversity in the dataset, at least in terms of how the instructions are worded. According to our experiments, it is still possible to generate a problem multiple times with a different formulation each time. We propose to extend take the curation further with multiple ideas.
+
+### Self-consistency
+We came up with a strong data instruction filtering technique. The idea is very simple, we want to test if the model is consistent with what it generates. We verify that by prompting the output of each generated instruction, the model generates the corresponding input and we check the consistency between that generation and the ground truth. 
+
+### Uniqueness
+Another alternative is to post-process the raw dataset by only keeping a set of unique instructions.
 
 ## Further details
 We modified the seed tasks to keep only those who are related to code. For that we combine the tasks from Code Alpaca (code tasks extrated from the original [seed tasks](https://github.com/yizhongw/self-instruct/blob/main/data/seed_tasks.jsonl) + some new tasks probably created by the repo's author) and some leetcode tasks. We have a total of `41` seed tasks.
