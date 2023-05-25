@@ -151,7 +151,7 @@ This part is related to the directory `instruction_iio`. It is the template as d
 
 ```bash
 cd instruction_iio
-accelerate launch instruction_output.py \
+accelerate launch instruction_input_output.py \
     --batch_dir "data_iio/santacoder_generations/" \
     --seed_tasks_path "data_iio/code_tasks.jsonl"\
     --num_instructions_to_generate 10 \
