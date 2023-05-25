@@ -1,5 +1,5 @@
 # Self-instruct 🤗
-A repository to perform self-instruct with a model on HF Hub
+A repository to perform self-instruct with a model on Hugging Face Hub.
 
 # What is this about?
 This repository is dedicated to [Self-instruct](https://arxiv.org/pdf/2212.10560.pdf). It is an iterative approach which allows to generate a dataset of instructions by boostrapping on a model's prediction. For it to work well, the model used has to be powerful. The original work actually focuses on OpenAI's `text-davinci-003` engine which is one of their most powerful model. Our aim is to give a chance to modest, decoder-based models to be used for a data generation purpose.
@@ -88,10 +88,10 @@ conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cud
 Install `transformers` and `accelerate`
 ```bash
 conda install -c huggingface transformers 
-pip install git+https://github.com/huggingface/accelerate.git
+pip install git+https://github.com/huggingface/accelerate
 ```
 Do not forget to launch `accelerate config` in the terminal in order to configure you environment, for more the details see [accelerate](https://github.com/huggingface/accelerate).
-We will also need `rouge-score` and `sentence-transformers`
+We will also need [`rouge-score`](https://github.com/google-research/google-research/tree/master/rouge)
 ```bash
 pip install rouge-score
 pip install sentence-transformers
@@ -99,7 +99,7 @@ pip install sentence-transformers
 Now we are ready to clone the repository and to start working 
 ```bash
 git clone https://github.com/ArmelRandy/self-instruct
-cd self-instruct
+cd Self-instruct
 ```
 
 ## Instruction - output
@@ -125,7 +125,7 @@ The possibility to change the trigger words `Instruction` and `Output` into othe
 ```bash
 cd instruction_io
 accelerate launch instruction_output.py \
-    --batch_dir = "data_io/santacoder_generations/" \
+    --batch_dir "data_io/santacoder_generations/" \
     --seed_tasks_path "data_io/code_tasks.jsonl"\
     --num_instructions_to_generate 10 \
     --model_name_or_path "gpt_bigcode-santacoder"\
@@ -146,7 +146,7 @@ This part is related to the directory `instruction_iio`. It is the template as d
 ```bash
 cd instruction_iio
 accelerate launch instruction_output.py \
-    --batch_dir = "data_iio/santacoder_generations/" \
+    --batch_dir "data_iio/santacoder_generations/" \
     --seed_tasks_path "data_iio/code_tasks.jsonl"\
     --num_instructions_to_generate 10 \
     --model_name_or_path "gpt_bigcode-santacoder"\
@@ -169,9 +169,9 @@ pip install -U sentence-transformers
 Here, we run the file `output_instruction.py` with the help of `accelerate`
 ```bash
 accelerate launch instruction_io/output_instruction.py \
-    --batch_dir "data_io/santacoder_generations" \
+    --batch_dir "instruction_io/data_io/santacoder_generations" \
     --num_trials 1 \
-    --seed_tasks_path "data_io/code_tasks.jsonl" \
+    --seed_tasks_path "instruction_io/data_io/code_tasks.jsonl" \
     --model_name_or_path "bigcode/gpt_bigcode-santacoder" \
     --num_prompt_instructions 8 \
     --n 1 \
