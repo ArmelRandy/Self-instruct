@@ -98,6 +98,7 @@ Now we are ready to clone the repository and to start working
 git clone https://github.com/ArmelRandy/self-instruct
 cd self-instruct
 ```
+
 ## Instruction - output
 
 This part is related to the directory `instruction_io`. We prompt the model with the following template
@@ -119,13 +120,20 @@ For the instructions that provides an input (a code in case of a debugging task 
 The possibility to change the trigger words `Instruction:` and `Output:` into other words such as `Request:` and `Answer:` respectively for example is given. However, the change has to be done directly in the code, as they trigger words are used as constant throughout the code.
 
 ```bash
-accelerate launch instruction_output.py
-    --batch_dir = "" \
-    --num_instructions_to_generate 100 \
-    --seed_tasks_path \
-    --model_name_or_path \
-    --max_length \
-    --request_batch_size \
+cd instruction_io
+accelerate launch instruction_output.py \
+    --batch_dir = "data_io/santacoder_generations/" \
+    --seed_tasks_path "data_io/code_tasks.jsonl"\
+    --num_instructions_to_generate 10 \
+    --model_name_or_path "gpt_bigcode-santacoder"\
+    --num_prompt_instructions 8 \
+    --request_batch_size 5 \
+    --n 2 \
+    --max_length 2048 \
+    --temperature 0.2 \
+    --top_p 0.9 \
+    --repetition_penalty 1.2 \
+    --threshold 0.7
 ```
 
 ## Instruction - input - output
@@ -133,11 +141,24 @@ accelerate launch instruction_output.py
 This part is related to the directory `instruction_iio`. It is the template as designed in Stanford's alpaca. The possibilty to change the trigger words is also provided, with the same limitations as those previously mentionned.
 
 ```bash
-accelerate launch instruction_input_output.py
---batch_dir = "" \
---num_instructions_to_generate 100 \
---seed_tasks_path \
---model_name_or_path \
---max_length \
---request_batch_size \
+cd instruction_iio
+accelerate launch instruction_output.py \
+    --batch_dir = "data_iio/santacoder_generations/" \
+    --seed_tasks_path "data_iio/code_tasks.jsonl"\
+    --num_instructions_to_generate 10 \
+    --model_name_or_path "gpt_bigcode-santacoder"\
+    --num_prompt_instructions 8 \
+    --request_batch_size 5 \
+    --n 2 \
+    --max_length 2048 \
+    --temperature 0.2 \
+    --top_p 0.9 \
+    --repetition_penalty 1.2 \
+    --threshold 0.7
 ```
+## Post-processing : unique strategy 
+Here we want to apply a post processing to our generated instructions by considering only instructions that are not too similar. In order to do so, we get into the folder `self-instruct` and we launch
+```
+python unique_post_processing.py
+    --batch_dir = "instruction_io/data_io/santacoder_generations/" \
+    --threshold 0.5
