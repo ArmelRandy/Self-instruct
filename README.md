@@ -30,7 +30,7 @@ This repository is dedicated to [Self-instruct](https://arxiv.org/pdf/2212.10560
 6. [Fine-tuning](#fine-tuning)
 
 # Overview
-Self-instruct is an iterative method that helps LM improve their ability to follow natural language instructions. The idea is to use a seed set of manually-written instructio and use them to prompt the model to generate new instructions and their corresponding input-output instances. The method includes a filtering step to ensure the novelty of the generated task.
+Self-instruct is an iterative method that helps LM improve their ability to follow natural language instructions. The idea is to use a seed set of manually-written instructions and use them to prompt the model to generate new instructions and their corresponding input-output instances. The method includes a filtering step to ensure the novelty of the generated task.
 
 # Related work
 Our implementation is inspired by the original [Self-instruct](https://github.com/yizhongw/self-instruct) method and recent updates including [Stanford's alpaca](https://github.com/tatsu-lab/stanford_alpaca/blob/) and [Code alpaca](https://github.com/sahil280114/codealpaca/). While the last two are almost identical, with the sole difference being the set of seed tasks used, the original work has a different mindset. As a matter of fact, self-instruct's author uses a set of seed tasks and prompt the model with some of them to make it generate instructions. Later on, the output to the generated instructions are found separately. Conversely, alpaca is all in one in the sense that the model is prompted generates instruction as well as input-output at the same time. It uses the following template
@@ -181,7 +181,7 @@ It will create a file `regen.jsonl` into `batch_dir`.
 
 - Unique
 
-Here we want to apply a post processing to our generated instructions by considering only instructions that are not too similar. In order to do so, we get into the folder `self-instruct` and we launch
+Here we want to apply a post-processing to our generated instructions by considering only instructions that are not too similar. In order to do so, we get into the folder `self-instruct` and we launch
 
 ```bash
 python unique_post_processing.py
@@ -198,8 +198,8 @@ python -m spacy download en_core_web_md
 pip install benepar 
 pip install plotly
 ```
-Now, it is possible to run the notebook `instruction_visualize.ipynb`. We also provide `dataset_to_hub.ipynb` in order to push the genrated dataset to the hub.
+Now, it is possible to run the notebook `instruction_visualize.ipynb`. We also provide `dataset_to_hub.ipynb` in order to push the generated dataset to the hub.
 
 # Fine-Tuning
 
-Now that the dataset is available, we can fine-tune our favorite text/code LLM to make it follow instructions. Our choice is naturally towards StarCoder. This [repository](https://github.com/bigcode-project/starcoder) gives a comprehensive method that can be used to fine-tune starcoder on any instruction dataset available on the hub. 
+Now that the dataset is available, we can fine-tune our favorite text/code LLM to make it follow instructions. Our choice is naturally towards StarCoder. This [repository](https://github.com/bigcode-project/starcoder) gives a comprehensive method that can be used to fine-tune starcoder on any instruction dataset available on the hub.
