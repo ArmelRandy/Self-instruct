@@ -134,7 +134,7 @@ accelerate launch instruction_output.py \
     --batch_dir "data_io/santacoder_generations/" \
     --seed_tasks_path "data_io/code_tasks.jsonl"\
     --num_instructions_to_generate 10 \
-    --model_name_or_path "gpt_bigcode-santacoder"\
+    --model_name_or_path "bigcode/gpt_bigcode-santacoder"\
     --num_prompt_instructions 8 \
     --request_batch_size 5 \
     --n 2 \
@@ -155,7 +155,7 @@ accelerate launch instruction_output.py \
     --batch_dir "data_iio/santacoder_generations/" \
     --seed_tasks_path "data_iio/code_tasks.jsonl"\
     --num_instructions_to_generate 10 \
-    --model_name_or_path "gpt_bigcode-santacoder"\
+    --model_name_or_path "bigcode/gpt_bigcode-santacoder"\
     --num_prompt_instructions 8 \
     --request_batch_size 5 \
     --n 2 \
