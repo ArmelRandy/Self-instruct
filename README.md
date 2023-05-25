@@ -174,10 +174,10 @@ pip install -U sentence-transformers
 
 Here, we run the file `output_instruction.py` with the help of `accelerate`
 ```bash
-accelerate launch instruction_io/output_instruction.py \
-    --batch_dir "instruction_io/data_io/santacoder_generations" \
-    --num_trials 1 \
-    --seed_tasks_path "instruction_io/data_io/code_tasks.jsonl" \
+accelerate launch output_instruction.py \
+    --batch_dir "data_io/santacoder_generations" \
+    --num_trials 4 \
+    --seed_tasks_path "data_io/code_tasks.jsonl" \
     --model_name_or_path "bigcode/gpt_bigcode-santacoder" \
     --num_prompt_instructions 8 \
     --n 1 \
@@ -215,3 +215,4 @@ Now that the dataset is available, we can fine-tune our favorite text/code LLM t
 - [The original self-instruct method](https://github.com/yizhongw/self-instruct)
 - [Stanford's Alpaca](https://github.com/tatsu-lab/stanford_alpaca)
 - [Code Alpaca](https://github.com/sahil280114/codealpaca)
+
