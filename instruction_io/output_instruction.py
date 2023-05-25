@@ -112,14 +112,14 @@ def parse_args():
         "--batch_dir",
         type=str,
         required=True,
-        default="data/starcoder_generations/",
+        default="data_io/starcoder_generations/",
         help="The directory where the batch is stored.",
     )
     parser.add_argument(
         "--seed_tasks_path",
         type=str,
         required=True,
-        default="data/seed_tasks.jsonl",
+        default="data_io/code_tasks.jsonl",
         help="The path to the human written data.",
     )
     parser.add_argument(
@@ -329,6 +329,5 @@ if __name__ == "__main__":
                         output_dictionary
                     )+ "\n"
                 )
-            print(output_dictionary)
     df.to_csv("statistics.csv", index=False)
     np.savetxt("forgotten.txt", np.array(L))
