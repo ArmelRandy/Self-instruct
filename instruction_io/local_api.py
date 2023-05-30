@@ -89,7 +89,7 @@ def make_requests(
                     stopping_criteria=stopping_criteria
                 )
             except RuntimeError :
-                print("An error occured, please check the size of input_ids compare to the value of max_length")
+                print(f"Step {step} : An error occured, please check the size of input_ids compare to the value of max_length")
                 continue
             response = accelerator.pad_across_processes(
                 response, dim=1, pad_index=tokenizer.pad_token_id
