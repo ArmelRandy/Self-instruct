@@ -1,6 +1,6 @@
 import tqdm
 from datetime import datetime
- 
+
 import torch
 from torch.utils.data import IterableDataset
 from torch.utils.data.dataloader import DataLoader
@@ -31,42 +31,45 @@ class EndOfFunctionCriteria(StoppingCriteria):
                 )
             )
         return all(done)
-    
+
+
 class TokenizedDataset(IterableDataset):
-    """Tokenize and preprocess the dataset, where the dataset is a list of instructions (str)
-    """
+    """Tokenize and preprocess the dataset, where the dataset is a list of instructions (str)"""
+
     def __init__(self, tokenizer, dataset):
         self.tokenizer = tokenizer
         self.dataset = dataset
         self.outputs = self.tokenizer(self.dataset, padding=True, return_tensors="pt")
+
     def __iter__(self):
         for i in range(len(self.dataset)):
             yield {
-                "input_ids" : self.outputs.input_ids[i],
-                "attention_mask" : self.outputs.attention_mask[i],
-                "index_prompt" : torch.tensor(i, dtype=torch.int32)
+                "input_ids": self.outputs.input_ids[i],
+                "attention_mask": self.outputs.attention_mask[i],
+                "index_prompt": torch.tensor(i, dtype=torch.int32),
             }
 
+
 def make_requests(
-        accelerator,
-        model,
-        tokenizer, 
-        prompts, 
-        max_length, 
-        temperature, 
-        top_p, 
-        stop_words, 
-        num_return_sequences, 
-        num_beams,
-        repetition_penalty 
-    ):
+    accelerator,
+    model,
+    tokenizer,
+    prompts,
+    max_length,
+    temperature,
+    top_p,
+    stop_words,
+    num_return_sequences,
+    num_beams,
+    repetition_penalty,
+):
     results = []
     if isinstance(prompts, list):
         pass
-    else :
+    else:
         # single prompt, i.e str
         prompts = [prompts]
-    tokenized_dataset = TokenizedDataset(tokenizer=tokenizer, dataset=prompts) 
+    tokenized_dataset = TokenizedDataset(tokenizer=tokenizer, dataset=prompts)
     dataloader = DataLoader(tokenized_dataset, batch_size=1)
     dataloader = accelerator.prepare(dataloader)
     for step, batch in tqdm.tqdm(enumerate(dataloader)):
@@ -74,8 +77,10 @@ def make_requests(
             input_ids = batch["input_ids"]
             attention_mask = batch["attention_mask"]
             index_prompt = batch["index_prompt"]
-            stopping_criteria = StoppingCriteriaList([EndOfFunctionCriteria(attention_mask.sum(), stop_words, tokenizer)])
-            try :
+            stopping_criteria = StoppingCriteriaList(
+                [EndOfFunctionCriteria(attention_mask.sum(), stop_words, tokenizer)]
+            )
+            try:
                 response = accelerator.unwrap_model(model).generate(
                     input_ids,
                     max_length=max_length,
@@ -85,31 +90,35 @@ def make_requests(
                     num_beams=num_beams,
                     repetition_penalty=repetition_penalty,
                     eos_token_id=tokenizer.eos_token_id,
-                    pad_token_id=tokenizer.pad_token_id, 
-                    stopping_criteria=stopping_criteria
+                    pad_token_id=tokenizer.pad_token_id,
+                    stopping_criteria=stopping_criteria,
                 )
-            except RuntimeError :
-                print(f"Step {step} : An error occured, please check the size of input_ids compare to the value of max_length")
+            except RuntimeError:
+                print(
+                    f"Step {step} : An error occured, please check the size of input_ids compare to the value of max_length"
+                )
                 continue
             response = accelerator.pad_across_processes(
                 response, dim=1, pad_index=tokenizer.pad_token_id
             )
             response = accelerator.gather(response)
             outputs = []
-            for response_i in response :
+            for response_i in response:
                 outputs.append(tokenizer.decode(response_i, skip_special_tokens=True))
             data = {
                 "prompt": prompts[index_prompt],
-                "response": 
-                [
+                "response": [
                     {
-                        "text" : outputs[i],
+                        "text": outputs[i],
                         "index": i,
-                        "finish_reason" : "stop" if (len(response[i]) < max_length) else "length"
-                    } 
+                        "finish_reason": "stop"
+                        if (len(response[i]) < max_length)
+                        else "length",
+                    }
                     for i in range(len(outputs))
-                    
-                ] if outputs else None,
+                ]
+                if outputs
+                else None,
                 "created_at": str(datetime.now()),
             }
             results.append(data)

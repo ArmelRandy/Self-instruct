@@ -18,11 +18,16 @@ from accelerate.utils import set_seed
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from templates import INSTRUCTION, OUTPUT
 
+
 def encode_prompt(prompt_instructions, next_output):
     """Encode multiple prompt instructions into a single string."""
     prompt = open("../output_prompt.txt").read() + "\n"
     for idx, task_dict in enumerate(prompt_instructions):
-        (instruction, input, output) = task_dict["instruction"], task_dict.get("input", ""), task_dict["output"]
+        (instruction, input, output) = (
+            task_dict["instruction"],
+            task_dict.get("input", ""),
+            task_dict["output"],
+        )
         instruction = re.sub(r"\s+", " ", instruction).strip().rstrip(":")
         input = "" if input.lower() == "<noinput>" else input
         prompt += f"###\n"
@@ -33,12 +38,14 @@ def encode_prompt(prompt_instructions, next_output):
     prompt += f"{idx + 2}. {INSTRUCTION}:\n"
     return prompt
 
+
 def sample_machine_instructions(machine_instructions, n):
     """Sample n machine instructions from a list of machine instructions."""
     return random.sample(machine_instructions, min(n, len(machine_instructions)))
 
+
 def find_word_in_string(w, s):
-    return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search(s)
+    return re.compile(r"\b({0})\b".format(w), flags=re.IGNORECASE).search(s)
 
 
 def post_process_starcoder_response(num_prompt_instructions, response):
@@ -52,25 +59,27 @@ def post_process_starcoder_response(num_prompt_instructions, response):
     The function takes the first element of the list. And divides the completion ("text") into 1 or more instructions. WHY?
     The model is prompted with 1. ... n. and will complete n+1. ... m. so we try to retrieve the m-n new instructions
     """
-    if response is None :
+    if response is None:
         return []
     end_of_prompt = response["text"].find(f"{num_prompt_instructions+1}. {OUTPUT}:")
-    if end_of_prompt >= 0 :
+    if end_of_prompt >= 0:
         raw_instructions = response["text"][end_of_prompt:]
-    else :
+    else:
         raw_instructions = response["text"]
     raw_instructions = re.split("###", raw_instructions)
     instructions = []
     for idx, inst in enumerate(raw_instructions):
-        splitted_data = re.split(f"{idx+num_prompt_instructions+1}\.\s+({OUTPUT}|{INSTRUCTION}):", inst)
+        splitted_data = re.split(
+            f"{idx+num_prompt_instructions+1}\.\s+({OUTPUT}|{INSTRUCTION}):", inst
+        )
         # index 0 : everything that comes before x. Instruction
         # index 1 : x. Output
         # index 2 : the output
         # index 3 : x. Instruction
         # index 4 : the instruction + the rest of the world before (x+1) Instruction.
-        if len(splitted_data) != 5 :
+        if len(splitted_data) != 5:
             continue
-        else :
+        else:
             output = splitted_data[2].strip()
             input = ""
             inst = splitted_data[4].strip()
@@ -78,12 +87,26 @@ def post_process_starcoder_response(num_prompt_instructions, response):
         if len(inst.split()) <= 3 or len(inst.split()) > 150:
             continue
         # filter based on keywords that are not suitable for language models.
-        blacklist = ["image", "images", "graph", "graphs", "picture", "pictures", "file", "files", "map", "maps", "draw", "plot", "go to"]
+        blacklist = [
+            "image",
+            "images",
+            "graph",
+            "graphs",
+            "picture",
+            "pictures",
+            "file",
+            "files",
+            "map",
+            "maps",
+            "draw",
+            "plot",
+            "go to",
+        ]
         blacklist += []
         if any(find_word_in_string(word, inst) for word in blacklist):
             continue
         # We found that the model tends to add "write a program" to some existing instructions, which lead to a lot of such instructions.
-        # And it's a bit comfusing whether the model need to write a program or directly output the result. 
+        # And it's a bit comfusing whether the model need to write a program or directly output the result.
         # Here we filter them out.
         # Note this is not a comprehensive filtering for all programming instructions.
         if inst.startswith("Write a program") or inst.startswith("Write a function"):
@@ -94,13 +117,7 @@ def post_process_starcoder_response(num_prompt_instructions, response):
         # filter those starting with non-english character
         if not inst[0].isascii():
             continue
-        instructions.append(
-            {
-                "instruction": inst,
-                "input": input,
-                "output": output
-            }
-        )
+        instructions.append({"instruction": inst, "input": input, "output": output})
     return instructions
 
 
@@ -130,19 +147,19 @@ def parse_args():
         "--model_name_or_path",
         type=str,
         default="bigcode/starcoder",
-        help="The name or path of the model to use."
+        help="The name or path of the model to use.",
     )
     parser.add_argument(
         "--num_prompt_instructions",
         type=int,
         default=8,
-        help="The total number of instructions to use in the prompt."
+        help="The total number of instructions to use in the prompt.",
     )
     parser.add_argument(
         "--n",
         type=int,
         default=2,
-        help="The number of machine generated instructions to use in the prompt."
+        help="The number of machine generated instructions to use in the prompt.",
     )
     parser.add_argument(
         "--max_length",
@@ -172,19 +189,19 @@ def parse_args():
         "--num_return_sequences",
         type=int,
         default=1,
-        help="The number of responses to generate."
+        help="The number of responses to generate.",
     )
     parser.add_argument(
         "--num_beams",
         default=1,
         type=int,
-        help="The beam size on the model used in the decoding."
+        help="The beam size on the model used in the decoding.",
     )
     parser.add_argument(
         "--repetition_penalty",
         type=float,
         default=1.2,
-        help="The repetition penalty parameter to use for the generation"
+        help="The repetition penalty parameter to use for the generation",
     )
     parser.add_argument(
         "--seed",
@@ -194,43 +211,49 @@ def parse_args():
     return parser.parse_args()
 
 
-similarity_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-df = pd.DataFrame(columns = ["rouge score", "sbert score"], data=np.zeros((10, 2)))
+similarity_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+df = pd.DataFrame(columns=["rouge score", "sbert score"], data=np.zeros((10, 2)))
 
 if __name__ == "__main__":
-    os.environ["TOKENIZERS_PARALLELISM"]="false"
-    
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
     args = parse_args()
     random.seed(args.seed)
     set_seed(args.seed)
-    
+
     accelerator = Accelerator()
     seed_tasks = [json.loads(l) for l in open(args.seed_tasks_path, "r")]
 
     seed_instructions = [
         {
-            "instruction": t["instruction"], 
-            "input": t["instances"][0]["input"], 
-            "output": t["instances"][0]["output"]
+            "instruction": t["instruction"],
+            "input": t["instances"][0]["input"],
+            "output": t["instances"][0]["output"],
         }
         for t in seed_tasks
     ]
     print(f"Loaded {len(seed_instructions)} human-written seed instructions")
 
     tokenizer = AutoTokenizer.from_pretrained(
-        args.model_name_or_path, 
+        args.model_name_or_path,
     )
     tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(args.model_name_or_path, torch_dtype=torch.bfloat16, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_name_or_path, torch_dtype=torch.bfloat16, trust_remote_code=True
+    )
     model = model.to(accelerator.device)
-    
+
     scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=False)
 
     os.makedirs(args.batch_dir, exist_ok=True)
     # load the LM-generated instructions
     machine_instructions = []
-    if os.path.exists(os.path.join(args.batch_dir, "machine_generated_instructions.jsonl")):
-        with open(os.path.join(args.batch_dir, "machine_generated_instructions.jsonl"), "r") as fin:
+    if os.path.exists(
+        os.path.join(args.batch_dir, "machine_generated_instructions.jsonl")
+    ):
+        with open(
+            os.path.join(args.batch_dir, "machine_generated_instructions.jsonl"), "r"
+        ) as fin:
             for line in fin:
                 instruction_info = json.loads(line)
                 machine_instructions.append(instruction_info)
@@ -253,7 +276,9 @@ if __name__ == "__main__":
             output_dictionary = {}
             instruction = inst["instruction"]
             inst_tokens = scorer._tokenizer.tokenize(instruction)
-            inst_embedding = similarity_model.encode(instruction, convert_to_tensor=True)
+            inst_embedding = similarity_model.encode(
+                instruction, convert_to_tensor=True
+            )
             output = inst["output"]
             # repeat for many combinations
             batch_inputs = []
@@ -262,11 +287,13 @@ if __name__ == "__main__":
             for j in range(args.num_trials):
                 # sample machine instructions from the pool
                 prompt_instructions = sample_machine_instructions(
-                    machine_instructions,
-                    n=args.n
+                    machine_instructions, n=args.n
                 )
                 # sample human instructions from the pool
-                prompt_instructions += random.sample(seed_instructions, args.num_prompt_instructions - len(prompt_instructions))
+                prompt_instructions += random.sample(
+                    seed_instructions,
+                    args.num_prompt_instructions - len(prompt_instructions),
+                )
                 random.shuffle(prompt_instructions)
                 prompt = encode_prompt(prompt_instructions, output)
                 batch_inputs.append(prompt)
@@ -279,54 +306,56 @@ if __name__ == "__main__":
                 max_length=args.max_length,
                 temperature=args.temperature,
                 top_p=args.top_p,
-                stop_words=args.stop_words+["\n{args.num_prompt_instructions+2}."],
+                stop_words=args.stop_words + ["\n{args.num_prompt_instructions+2}."],
                 num_return_sequences=args.num_return_sequences,
                 num_beams=args.num_beams,
-                repetition_penalty=args.repetition_penalty
+                repetition_penalty=args.repetition_penalty,
             )
             request_duration = time.time() - request_start
             instructions = []
             process_start = time.time()
             for result in results:
                 for r in range(len(result["response"])):
-                    new_instructions = post_process_starcoder_response(args.num_prompt_instructions, result["response"][r])
+                    new_instructions = post_process_starcoder_response(
+                        args.num_prompt_instructions, result["response"][r]
+                    )
                     instructions += new_instructions
             process_duration = time.time() - process_start
             total = len(instructions)
-            if total == 0 :
+            if total == 0:
                 output_dictionary[instruction] = []
                 L.append(i)
                 if accelerator.is_main_process:
-                    fout.write(
-                        json.dumps(
-                            output_dictionary
-                        )+ "\n"
-                    )
+                    fout.write(json.dumps(output_dictionary) + "\n")
                 continue
-            for candidate in instructions :
-                rouge_score = rouge_scorer._score_lcs(inst_tokens, scorer._tokenizer.tokenize(candidate["instruction"]))
+            for candidate in instructions:
+                rouge_score = rouge_scorer._score_lcs(
+                    inst_tokens, scorer._tokenizer.tokenize(candidate["instruction"])
+                )
                 rouge_score = rouge_score.fmeasure
-                candidate_embedding = similarity_model.encode(candidate["instruction"], convert_to_tensor=True)
-                sbert_score = util.pytorch_cos_sim(inst_embedding, candidate_embedding).item()
+                candidate_embedding = similarity_model.encode(
+                    candidate["instruction"], convert_to_tensor=True
+                )
+                sbert_score = util.pytorch_cos_sim(
+                    inst_embedding, candidate_embedding
+                ).item()
                 values.append((candidate["instruction"], rouge_score, sbert_score))
             max_rouge_score = max([b for a, b, c in values])
             max_sbert_score = max([c for a, b, c in values])
             output_dictionary[instruction] = values
-            df["rouge score"] += ( max_rouge_score >= np.arange(10)/10 ).astype("int")
-            df["sbert score"] += ( max_sbert_score >= np.arange(10)/10 ).astype("int")
+            df["rouge score"] += (max_rouge_score >= np.arange(10) / 10).astype("int")
+            df["sbert score"] += (max_sbert_score >= np.arange(10) / 10).astype("int")
             average_request_duration += request_duration
             average_process_duration += process_duration
-            if (i+1)%50 == 0:
+            if (i + 1) % 50 == 0:
                 average_request_duration /= 50
                 average_process_duration /= 50
-                print(f"i: {i}, Request duration: {average_request_duration:.2f}s, processing duration: {average_process_duration:.2f}s")
+                print(
+                    f"i: {i}, Request duration: {average_request_duration:.2f}s, processing duration: {average_process_duration:.2f}s"
+                )
                 average_request_duration = 0
                 average_process_duration = 0
             if accelerator.is_main_process:
-                fout.write(
-                    json.dumps(
-                        output_dictionary
-                    )+ "\n"
-                )
+                fout.write(json.dumps(output_dictionary) + "\n")
     df.to_csv("statistics.csv", index=False)
     np.savetxt("forgotten.txt", np.array(L))
