@@ -43,7 +43,7 @@ class TokenizedDataset(IterableDataset):
             yield {
                 "input_ids" : self.outputs.input_ids[i],
                 "attention_mask" : self.outputs.attention_mask[i],
-                "index_prompt" : torch.tensor(i, dtype=torch.int8)
+                "index_prompt" : torch.tensor(i, dtype=torch.int32)
             }
 
 def make_requests(

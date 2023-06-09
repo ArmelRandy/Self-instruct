@@ -48,7 +48,7 @@ def find_word_in_string(w, s):
 
 def post_process_starcoder_response(num_prompt_instructions, response):
     """
-    Response is a list of dictionary of the form
+    Response is a dictionary of the form
     {
         "text" : instruction
         "index" : integer
@@ -59,15 +59,15 @@ def post_process_starcoder_response(num_prompt_instructions, response):
     """
     if response is None :
         return []
-    end_of_prompt = response[0]["text"].find(f"{num_prompt_instructions+1}. {INSTRUCTION}:")
+    end_of_prompt = response["text"].find(f"{num_prompt_instructions+1}. {INSTRUCTION}:")
     if end_of_prompt >= 0 :
-        raw_instructions = response[0]["text"][end_of_prompt:]
+        raw_instructions = response["text"][end_of_prompt:]
     else :
-        raw_instructions = response[0]["text"]
+        raw_instructions = response["text"]
     raw_instructions = re.split("###", raw_instructions)
     instructions = []
     for idx, inst in enumerate(raw_instructions):
-        if idx == len(raw_instructions) - 1 and response[0]["finish_reason"] == "length":
+        if idx == len(raw_instructions) - 1 and response["finish_reason"] == "length":
             continue
         splitted_data = re.split(f"{idx+num_prompt_instructions+1}\.\s+({INSTRUCTION}|{OUTPUT}):", inst)
         # index 0 : everything that comes before x. Instruction
@@ -298,8 +298,9 @@ if __name__ == "__main__":
             instructions = []
             process_start = time.time()
             for result in results:
-                new_instructions = post_process_starcoder_response(args.num_prompt_instructions, result["response"])
-                instructions += new_instructions
+                for r in range(len(result["response"])):
+                    new_instructions = post_process_starcoder_response(args.num_prompt_instructions, result["response"][r])
+                    instructions += new_instructions
             
             total = len(instructions)
             keep = 0
