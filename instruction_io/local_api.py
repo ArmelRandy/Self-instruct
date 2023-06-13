@@ -69,57 +69,62 @@ def make_requests(
     else:
         # single prompt, i.e str
         prompts = [prompts]
+    state = accelerator.state
     tokenized_dataset = TokenizedDataset(tokenizer=tokenizer, dataset=prompts)
-    dataloader = DataLoader(tokenized_dataset, batch_size=1)
-    dataloader = accelerator.prepare(dataloader)
-    for step, batch in tqdm.tqdm(enumerate(dataloader)):
-        with torch.no_grad():
-            input_ids = batch["input_ids"]
-            attention_mask = batch["attention_mask"]
-            index_prompt = batch["index_prompt"]
-            stopping_criteria = StoppingCriteriaList(
-                [EndOfFunctionCriteria(attention_mask.sum(), stop_words, tokenizer)]
-            )
-            try:
-                response = accelerator.unwrap_model(model).generate(
-                    input_ids,
-                    max_length=max_length,
-                    temperature=temperature,
-                    num_return_sequences=num_return_sequences,
-                    top_p=top_p,
-                    num_beams=num_beams,
-                    repetition_penalty=repetition_penalty,
-                    eos_token_id=tokenizer.eos_token_id,
-                    pad_token_id=tokenizer.pad_token_id,
-                    stopping_criteria=stopping_criteria,
+    dataloader = DataLoader(tokenized_dataset, batch_size=accelerator.num_processes)
+    for step, batch_ in tqdm.tqdm(enumerate(dataloader)):
+        for key in batch_:
+            batch_[key] = batch_[key].to(state.device)
+        with state.split_between_processes(batch_, apply_padding=True) as batch:
+            with torch.no_grad():
+                input_ids = batch["input_ids"]
+                attention_mask = batch["attention_mask"]
+                index_prompt = batch["index_prompt"]
+                stopping_criteria = StoppingCriteriaList(
+                    [EndOfFunctionCriteria(attention_mask.sum(), stop_words, tokenizer)]
                 )
-            except RuntimeError:
-                print(
-                    f"Step {step} : An error occured, please check the size of input_ids compare to the value of max_length"
+                try:
+                    response = accelerator.unwrap_model(model).generate(
+                        input_ids,
+                        max_length=max_length,
+                        temperature=temperature,
+                        num_return_sequences=num_return_sequences,
+                        top_p=top_p,
+                        num_beams=num_beams,
+                        repetition_penalty=repetition_penalty,
+                        eos_token_id=tokenizer.eos_token_id,
+                        pad_token_id=tokenizer.pad_token_id,
+                        stopping_criteria=stopping_criteria,
+                    )
+                except RuntimeError:
+                    print(
+                        f"Step {step} : An error occured, please check the size of input_ids compare to the value of max_length"
+                    )
+                    continue
+                response = accelerator.pad_across_processes(
+                    response, dim=1, pad_index=tokenizer.pad_token_id
                 )
-                continue
-            response = accelerator.pad_across_processes(
-                response, dim=1, pad_index=tokenizer.pad_token_id
-            )
-            response = accelerator.gather(response)
-            outputs = []
-            for response_i in response:
-                outputs.append(tokenizer.decode(response_i, skip_special_tokens=True))
-            data = {
-                "prompt": prompts[index_prompt],
-                "response": [
-                    {
-                        "text": outputs[i],
-                        "index": i,
-                        "finish_reason": "stop"
-                        if (len(response[i]) < max_length)
-                        else "length",
-                    }
-                    for i in range(len(outputs))
-                ]
-                if outputs
-                else None,
-                "created_at": str(datetime.now()),
-            }
-            results.append(data)
+                response = accelerator.gather(response)
+                outputs = []
+                for response_i in response:
+                    outputs.append(
+                        tokenizer.decode(response_i, skip_special_tokens=True)
+                    )
+                data = {
+                    "prompt": prompts[index_prompt],
+                    "response": [
+                        {
+                            "text": outputs[i],
+                            "index": i,
+                            "finish_reason": "stop"
+                            if (len(response[i]) < max_length)
+                            else "length",
+                        }
+                        for i in range(len(outputs))
+                    ]
+                    if outputs
+                    else None,
+                    "created_at": str(datetime.now()),
+                }
+                results.append(data)
     return results
