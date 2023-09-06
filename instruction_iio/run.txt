@@ -1,8 +1,0 @@
-accelerate launch instruction_input_output.py \
-    --batch_dir="data_iio/santacoder_generations/" \
-    --num_instructions_to_generate 2 \
-    --seed_tasks_path="data_iio/code_tasks.jsonl" \
-    --model_name_or_path="bigcode/gpt_bigcode-santacoder" \
-    --num_prompt_instructions 4 \
-    --max_length 2048 \
-    --request_batch_size 4

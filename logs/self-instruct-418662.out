@@ -1,0 +1,1101 @@
++ source /admin/home/armel/.bashrc
+++ HISTCONTROL=ignoreboth
+++ shopt -s histappend
+++ HISTSIZE=1000
+++ HISTFILESIZE=2000
+++ shopt -s checkwinsize
+++ '[' -x /usr/bin/lesspipe ']'
++++ SHELL=/bin/sh
++++ lesspipe
+++ eval 'export LESSOPEN="| /usr/bin/lesspipe %s";
+export LESSCLOSE="/usr/bin/lesspipe %s %s";'
++++ export 'LESSOPEN=| /usr/bin/lesspipe %s'
++++ LESSOPEN='| /usr/bin/lesspipe %s'
++++ export 'LESSCLOSE=/usr/bin/lesspipe %s %s'
++++ LESSCLOSE='/usr/bin/lesspipe %s %s'
+++ '[' -z '' ']'
+++ '[' -r /etc/debian_chroot ']'
+++ case "$TERM" in
+++ color_prompt=yes
+++ '[' -n '' ']'
+++ '[' yes = yes ']'
+++ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+++ unset color_prompt force_color_prompt
+++ case "$TERM" in
+++ PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+++ '[' -x /usr/bin/dircolors ']'
+++ test -r /admin/home/armel/.dircolors
++++ dircolors -b
+++ eval 'LS_COLORS='\''rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'\'';
+export LS_COLORS'
++++ LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'
++++ export LS_COLORS
+++ alias 'ls=ls --color=auto'
+++ alias 'grep=grep --color=auto'
+++ alias 'fgrep=fgrep --color=auto'
+++ alias 'egrep=egrep --color=auto'
+++ alias 'll=ls -alF'
+++ alias 'la=ls -A'
+++ alias 'l=ls -CF'
+++ alias 'alert=notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+++ '[' -f /admin/home/armel/.bash_aliases ']'
+++ shopt -oq posix
+++ '[' -f /usr/share/bash-completion/bash_completion ']'
+++ . /usr/share/bash-completion/bash_completion
++++ BASH_COMPLETION_VERSINFO=(2 10)
++++ [[ ehxB == *v* ]]
++++ BASH_COMPLETION_ORIGINAL_V_VALUE=+v
++++ [[ -n '' ]]
++++ set +v
++++ _blacklist_glob='@(acroread.sh)'
++++ shopt -s extglob progcomp
++++ complete -u groups slay w sux
++++ complete -A stopped -P '"%' -S '"' bg
++++ complete -j -P '"%' -S '"' fg jobs disown
++++ complete -v readonly unset
++++ complete -A setopt set
++++ complete -A shopt shopt
++++ complete -A helptopic help
++++ complete -a unalias
++++ complete -c command type which
++++ complete -b builtin
++++ [[ linux-gnu == *@(solaris|aix)* ]]
++++ [[ linux-gnu == *@(solaris|aix)* ]]
++++ [[ linux-gnu == *@(solaris|aix)* ]]
++++ _backup_glob='@(#*#|*@(~|.@(bak|orig|rej|swp|dpkg*|rpm@(orig|new|save))))'
++++ complete -F _service service
++++ _sysvdirs
++++ sysvdirs=()
++++ [[ -d /etc/rc.d/init.d ]]
++++ [[ -d /etc/init.d ]]
++++ sysvdirs+=(/etc/init.d)
++++ [[ -f /etc/slackware-version ]]
++++ return 0
++++ for svcdir in "${sysvdirs[@]}"
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/acpid ]]
++++ complete -F _service /etc/init.d/acpid
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/apparmor ]]
++++ complete -F _service /etc/init.d/apparmor
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/apport ]]
++++ complete -F _service /etc/init.d/apport
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/atd ]]
++++ complete -F _service /etc/init.d/atd
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/chrony ]]
++++ complete -F _service /etc/init.d/chrony
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/console-setup.sh ]]
++++ complete -F _service /etc/init.d/console-setup.sh
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/cron ]]
++++ complete -F _service /etc/init.d/cron
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/cryptdisks ]]
++++ complete -F _service /etc/init.d/cryptdisks
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/cryptdisks-early ]]
++++ complete -F _service /etc/init.d/cryptdisks-early
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/datadog-agent ]]
++++ complete -F _service /etc/init.d/datadog-agent
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/datadog-agent-process ]]
++++ complete -F _service /etc/init.d/datadog-agent-process
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/datadog-agent-security ]]
++++ complete -F _service /etc/init.d/datadog-agent-security
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/datadog-agent-trace ]]
++++ complete -F _service /etc/init.d/datadog-agent-trace
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/dbus ]]
++++ complete -F _service /etc/init.d/dbus
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/docker ]]
++++ complete -F _service /etc/init.d/docker
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/gdrdrv ]]
++++ complete -F _service /etc/init.d/gdrdrv
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/grub-common ]]
++++ complete -F _service /etc/init.d/grub-common
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/hwclock.sh ]]
++++ complete -F _service /etc/init.d/hwclock.sh
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/irqbalance ]]
++++ complete -F _service /etc/init.d/irqbalance
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/iscsid ]]
++++ complete -F _service /etc/init.d/iscsid
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/iwpmd ]]
++++ complete -F _service /etc/init.d/iwpmd
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/keyboard-setup.sh ]]
++++ complete -F _service /etc/init.d/keyboard-setup.sh
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/kmod ]]
++++ complete -F _service /etc/init.d/kmod
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/lvm2 ]]
++++ complete -F _service /etc/init.d/lvm2
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/lvm2-lvmpolld ]]
++++ complete -F _service /etc/init.d/lvm2-lvmpolld
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/multipath-tools ]]
++++ complete -F _service /etc/init.d/multipath-tools
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/munge ]]
++++ complete -F _service /etc/init.d/munge
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/nfs-common ]]
++++ complete -F _service /etc/init.d/nfs-common
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/open-iscsi ]]
++++ complete -F _service /etc/init.d/open-iscsi
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/open-vm-tools ]]
++++ complete -F _service /etc/init.d/open-vm-tools
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/plymouth ]]
++++ complete -F _service /etc/init.d/plymouth
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/plymouth-log ]]
++++ complete -F _service /etc/init.d/plymouth-log
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/procps ]]
++++ complete -F _service /etc/init.d/procps
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/rpcbind ]]
++++ complete -F _service /etc/init.d/rpcbind
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/rsync ]]
++++ complete -F _service /etc/init.d/rsync
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/rsyslog ]]
++++ complete -F _service /etc/init.d/rsyslog
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/screen-cleanup ]]
++++ complete -F _service /etc/init.d/screen-cleanup
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/sendmail ]]
++++ complete -F _service /etc/init.d/sendmail
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/ssh ]]
++++ complete -F _service /etc/init.d/ssh
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/sysstat ]]
++++ complete -F _service /etc/init.d/sysstat
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/udev ]]
++++ complete -F _service /etc/init.d/udev
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/ufw ]]
++++ complete -F _service /etc/init.d/ufw
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/unattended-upgrades ]]
++++ complete -F _service /etc/init.d/unattended-upgrades
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/uuidd ]]
++++ complete -F _service /etc/init.d/uuidd
++++ for svc in $svcdir/!($_backup_glob)
++++ [[ -x /etc/init.d/x11-common ]]
++++ complete -F _service /etc/init.d/x11-common
++++ unset svc svcdir sysvdirs
++++ [[ linux-gnu == *freebsd* ]]
++++ shopt -u hostcomplete
++++ complete -F _user_at_host talk ytalk finger
++++ complete -F _known_hosts traceroute traceroute6 fping fping6 telnet rsh rlogin ftp dig mtr ssh-installkeys showmount
++++ shopt -q cdable_vars
++++ complete -F _cd -o nospace cd pushd
++++ complete -F _command aoss command do else eval exec ltrace nice nohup padsp then time tsocks vsound xargs
++++ complete -F _root_command fakeroot gksu gksudo kdesudo really
++++ complete -F _longopt a2ps awk base64 bash bc bison cat chroot colordiff cp csplit cut date df diff dir du enscript env expand fmt fold gperf grep grub head irb ld ldd less ln ls m4 md5sum mkdir mkfifo mknod mv netstat nl nm objcopy objdump od paste pr ptx readelf rm rmdir sed seq shasum sha1sum sha224sum sha256sum sha384sum sha512sum shar sort split strip sum tac tail tee texindex touch tr uname unexpand uniq units vdir wc who
++++ [[ 5 -gt 4 ]]
++++ declare -Ag _xspecs
++++ _install_xspec '!*.?(t)bz?(2)' bunzip2 bzcat pbunzip2 pbzcat lbunzip2 lbzcat
++++ local 'xspec=!*.?(t)bz?(2)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.?(t)bz?(2)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.?(t)bz?(2)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.?(t)bz?(2)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.?(t)bz?(2)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.?(t)bz?(2)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.?(t)bz?(2)'
++++ _install_xspec '!*.@(zip|[egjswx]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|epub|apk|aab|ipa|do[ct][xm]|p[op]t[mx]|xl[st][xm]|pyz|whl)' unzip zipinfo
++++ local 'xspec=!*.@(zip|[egjswx]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|epub|apk|aab|ipa|do[ct][xm]|p[op]t[mx]|xl[st][xm]|pyz|whl)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(zip|[egjswx]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|epub|apk|aab|ipa|do[ct][xm]|p[op]t[mx]|xl[st][xm]|pyz|whl)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(zip|[egjswx]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|epub|apk|aab|ipa|do[ct][xm]|p[op]t[mx]|xl[st][xm]|pyz|whl)'
++++ _install_xspec '*.Z' compress znew
++++ local 'xspec=*.Z' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.Z'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.Z'
++++ _install_xspec '!*.@(Z|[gGd]z|t[ag]z)' gunzip zcat
++++ local 'xspec=!*.@(Z|[gGd]z|t[ag]z)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(Z|[gGd]z|t[ag]z)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(Z|[gGd]z|t[ag]z)'
++++ _install_xspec '!*.@(Z|[gGdz]z|t[ag]z)' unpigz
++++ local 'xspec=!*.@(Z|[gGdz]z|t[ag]z)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(Z|[gGdz]z|t[ag]z)'
++++ _install_xspec '!*.Z' uncompress
++++ local 'xspec=!*.Z' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.Z'
++++ _install_xspec '!*.@(tlz|lzma)' lzcat lzegrep lzfgrep lzgrep lzless lzmore unlzma
++++ local 'xspec=!*.@(tlz|lzma)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(tlz|lzma)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(tlz|lzma)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(tlz|lzma)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(tlz|lzma)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(tlz|lzma)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(tlz|lzma)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(tlz|lzma)'
++++ _install_xspec '!*.@(?(t)xz|tlz|lzma)' unxz xzcat
++++ local 'xspec=!*.@(?(t)xz|tlz|lzma)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(t)xz|tlz|lzma)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(t)xz|tlz|lzma)'
++++ _install_xspec '!*.lrz' lrunzip
++++ local 'xspec=!*.lrz' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.lrz'
++++ _install_xspec '!*.@(gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx)' ee
++++ local 'xspec=!*.@(gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx)'
++++ _install_xspec '!*.@(gif|jp?(e)g|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|svg)' qiv
++++ local 'xspec=!*.@(gif|jp?(e)g|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|svg)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(gif|jp?(e)g|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|svg)'
++++ _install_xspec '!*.@(gif|jp?(e)g?(2)|j2[ck]|jp[2f]|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|?(e)ps)' xv
++++ local 'xspec=!*.@(gif|jp?(e)g?(2)|j2[ck]|jp[2f]|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|?(e)ps)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(gif|jp?(e)g?(2)|j2[ck]|jp[2f]|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|?(e)ps)'
++++ _install_xspec '!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))' gv ggv kghostview
++++ local 'xspec=!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))'
++++ _install_xspec '!*.@(dvi|DVI)?(.@(gz|Z|bz2))' xdvi kdvi
++++ local 'xspec=!*.@(dvi|DVI)?(.@(gz|Z|bz2))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(dvi|DVI)?(.@(gz|Z|bz2))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(dvi|DVI)?(.@(gz|Z|bz2))'
++++ _install_xspec '!*.dvi' dvips dviselect dvitype dvipdf advi dvipdfm dvipdfmx
++++ local 'xspec=!*.dvi' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.dvi'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.dvi'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.dvi'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.dvi'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.dvi'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.dvi'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.dvi'
++++ _install_xspec '!*.[pf]df' acroread gpdf
++++ local 'xspec=!*.[pf]df' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.[pf]df'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.[pf]df'
++++ _install_xspec '!*.@(pdf|fdf)?(.@(gz|GZ|bz2|BZ2|Z))' xpdf
++++ local 'xspec=!*.@(pdf|fdf)?(.@(gz|GZ|bz2|BZ2|Z))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(pdf|fdf)?(.@(gz|GZ|bz2|BZ2|Z))'
++++ _install_xspec '!*.@(?(e)ps|pdf)' kpdf
++++ local 'xspec=!*.@(?(e)ps|pdf)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ _install_xspec '!*.@(okular|@(?(e|x)ps|?(E|X)PS|[pf]df|[PF]DF|dvi|DVI|cb[rz]|CB[RZ]|djv?(u)|DJV?(U)|dvi|DVI|gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx|GIF|JP?(E)G|MIFF|TIF?(F)|PN[GM]|P[BGP]M|BMP|XPM|ICO|XWD|TGA|PCX|epub|EPUB|odt|ODT|fb?(2)|FB?(2)|mobi|MOBI|g3|G3|chm|CHM)?(.?(gz|GZ|bz2|BZ2|xz|XZ)))' okular
++++ local 'xspec=!*.@(okular|@(?(e|x)ps|?(E|X)PS|[pf]df|[PF]DF|dvi|DVI|cb[rz]|CB[RZ]|djv?(u)|DJV?(U)|dvi|DVI|gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx|GIF|JP?(E)G|MIFF|TIF?(F)|PN[GM]|P[BGP]M|BMP|XPM|ICO|XWD|TGA|PCX|epub|EPUB|odt|ODT|fb?(2)|FB?(2)|mobi|MOBI|g3|G3|chm|CHM)?(.?(gz|GZ|bz2|BZ2|xz|XZ)))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(okular|@(?(e|x)ps|?(E|X)PS|[pf]df|[PF]DF|dvi|DVI|cb[rz]|CB[RZ]|djv?(u)|DJV?(U)|dvi|DVI|gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx|GIF|JP?(E)G|MIFF|TIF?(F)|PN[GM]|P[BGP]M|BMP|XPM|ICO|XWD|TGA|PCX|epub|EPUB|odt|ODT|fb?(2)|FB?(2)|mobi|MOBI|g3|G3|chm|CHM)?(.?(gz|GZ|bz2|BZ2|xz|XZ)))'
++++ _install_xspec '!*.pdf' epdfview pdfunite
++++ local 'xspec=!*.pdf' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.pdf'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.pdf'
++++ _install_xspec '!*.@(cb[rz7t]|djv?(u)|?(e)ps|pdf)' zathura
++++ local 'xspec=!*.@(cb[rz7t]|djv?(u)|?(e)ps|pdf)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(cb[rz7t]|djv?(u)|?(e)ps|pdf)'
++++ _install_xspec '!*.@(?(e)ps|pdf)' ps2pdf ps2pdf12 ps2pdf13 ps2pdf14 ps2pdfwr
++++ local 'xspec=!*.@(?(e)ps|pdf)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ _install_xspec '!*.texi*' makeinfo texi2html
++++ local 'xspec=!*.texi*' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.texi*'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.texi*'
++++ _install_xspec '!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)' tex latex slitex jadetex pdfjadetex pdftex pdflatex texi2dvi xetex xelatex luatex lualatex
++++ local 'xspec=!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ _install_xspec '!*.mp3' mpg123 mpg321 madplay
++++ local 'xspec=!*.mp3' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.mp3'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.mp3'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.mp3'
++++ _install_xspec '!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))' xine aaxine fbxine
++++ local 'xspec=!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ _install_xspec '!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))' kaffeine dragon
++++ local 'xspec=!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmvx]|OG[AGMVX]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ _install_xspec '!*.@(avi|asf|wmv)' aviplay
++++ local 'xspec=!*.@(avi|asf|wmv)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(avi|asf|wmv)'
++++ _install_xspec '!*.@(rm?(j)|ra?(m)|smi?(l))' realplay
++++ local 'xspec=!*.@(rm?(j)|ra?(m)|smi?(l))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(rm?(j)|ra?(m)|smi?(l))'
++++ _install_xspec '!*.@(mpg|mpeg|avi|mov|qt)' xanim
++++ local 'xspec=!*.@(mpg|mpeg|avi|mov|qt)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(mpg|mpeg|avi|mov|qt)'
++++ _install_xspec '!*.@(og[ag]|m3u|flac|spx)' ogg123
++++ local 'xspec=!*.@(og[ag]|m3u|flac|spx)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(og[ag]|m3u|flac|spx)'
++++ _install_xspec '!*.@(mp3|og[ag]|pls|m3u)' gqmpeg freeamp
++++ local 'xspec=!*.@(mp3|og[ag]|pls|m3u)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(mp3|og[ag]|pls|m3u)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(mp3|og[ag]|pls|m3u)'
++++ _install_xspec '!*.fig' xfig
++++ local 'xspec=!*.fig' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.fig'
++++ _install_xspec '!*.@(mid?(i)|cmf)' playmidi
++++ local 'xspec=!*.@(mid?(i)|cmf)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(mid?(i)|cmf)'
++++ _install_xspec '!*.@(mid?(i)|rmi|rcp|[gr]36|g18|mod|xm|it|x3m|s[3t]m|kar)' timidity
++++ local 'xspec=!*.@(mid?(i)|rmi|rcp|[gr]36|g18|mod|xm|it|x3m|s[3t]m|kar)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(mid?(i)|rmi|rcp|[gr]36|g18|mod|xm|it|x3m|s[3t]m|kar)'
++++ _install_xspec '!*.@(669|abc|am[fs]|d[bs]m|dmf|far|it|mdl|m[eo]d|mid?(i)|mt[2m]|oct|okt?(a)|p[st]m|s[3t]m|ult|umx|wav|xm)' modplugplay modplug123
++++ local 'xspec=!*.@(669|abc|am[fs]|d[bs]m|dmf|far|it|mdl|m[eo]d|mid?(i)|mt[2m]|oct|okt?(a)|p[st]m|s[3t]m|ult|umx|wav|xm)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(669|abc|am[fs]|d[bs]m|dmf|far|it|mdl|m[eo]d|mid?(i)|mt[2m]|oct|okt?(a)|p[st]m|s[3t]m|ult|umx|wav|xm)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(669|abc|am[fs]|d[bs]m|dmf|far|it|mdl|m[eo]d|mid?(i)|mt[2m]|oct|okt?(a)|p[st]m|s[3t]m|ult|umx|wav|xm)'
++++ _install_xspec '*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)' vi vim gvim rvim view rview rgvim rgview gview emacs xemacs sxemacs kate kwrite
++++ local 'xspec=*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ _install_xspec '!*.@(zip|z|gz|tgz)' bzme
++++ local 'xspec=!*.@(zip|z|gz|tgz)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(zip|z|gz|tgz)'
++++ _install_xspec '!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))' netscape mozilla lynx galeon dillo elinks amaya epiphany
++++ local 'xspec=!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ _install_xspec '!*.@(sxw|stw|sxg|sgl|doc?([mx])|dot?([mx])|rtf|txt|htm|html|?(f)odt|ott|odm|pdf)' oowriter lowriter
++++ local 'xspec=!*.@(sxw|stw|sxg|sgl|doc?([mx])|dot?([mx])|rtf|txt|htm|html|?(f)odt|ott|odm|pdf)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxw|stw|sxg|sgl|doc?([mx])|dot?([mx])|rtf|txt|htm|html|?(f)odt|ott|odm|pdf)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxw|stw|sxg|sgl|doc?([mx])|dot?([mx])|rtf|txt|htm|html|?(f)odt|ott|odm|pdf)'
++++ _install_xspec '!*.@(sxi|sti|pps?(x)|ppt?([mx])|pot?([mx])|?(f)odp|otp)' ooimpress loimpress
++++ local 'xspec=!*.@(sxi|sti|pps?(x)|ppt?([mx])|pot?([mx])|?(f)odp|otp)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxi|sti|pps?(x)|ppt?([mx])|pot?([mx])|?(f)odp|otp)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxi|sti|pps?(x)|ppt?([mx])|pot?([mx])|?(f)odp|otp)'
++++ _install_xspec '!*.@(sxc|stc|xls?([bmx])|xlw|xlt?([mx])|[ct]sv|?(f)ods|ots)' oocalc localc
++++ local 'xspec=!*.@(sxc|stc|xls?([bmx])|xlw|xlt?([mx])|[ct]sv|?(f)ods|ots)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxc|stc|xls?([bmx])|xlw|xlt?([mx])|[ct]sv|?(f)ods|ots)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxc|stc|xls?([bmx])|xlw|xlt?([mx])|[ct]sv|?(f)ods|ots)'
++++ _install_xspec '!*.@(sxd|std|sda|sdd|?(f)odg|otg)' oodraw lodraw
++++ local 'xspec=!*.@(sxd|std|sda|sdd|?(f)odg|otg)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxd|std|sda|sdd|?(f)odg|otg)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxd|std|sda|sdd|?(f)odg|otg)'
++++ _install_xspec '!*.@(sxm|smf|mml|odf)' oomath lomath
++++ local 'xspec=!*.@(sxm|smf|mml|odf)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxm|smf|mml|odf)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(sxm|smf|mml|odf)'
++++ _install_xspec '!*.odb' oobase lobase
++++ local 'xspec=!*.odb' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.odb'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.odb'
++++ _install_xspec '!*.[rs]pm' rpm2cpio
++++ local 'xspec=!*.[rs]pm' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.[rs]pm'
++++ _install_xspec '!*.aux' bibtex
++++ local 'xspec=!*.aux' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.aux'
++++ _install_xspec '!*.po' poedit gtranslator kbabel lokalize
++++ local 'xspec=!*.po' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.po'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.po'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.po'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.po'
++++ _install_xspec '!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])' harbour gharbour hbpp
++++ local 'xspec=!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])'
++++ _install_xspec '!*.[Hh][Rr][Bb]' hbrun
++++ local 'xspec=!*.[Hh][Rr][Bb]' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.[Hh][Rr][Bb]'
++++ _install_xspec '!*.ly' lilypond ly2dvi
++++ local 'xspec=!*.ly' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.ly'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.ly'
++++ _install_xspec '!*.@(dif?(f)|?(d)patch)?(.@([gx]z|bz2|lzma))' cdiff
++++ local 'xspec=!*.@(dif?(f)|?(d)patch)?(.@([gx]z|bz2|lzma))' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(dif?(f)|?(d)patch)?(.@([gx]z|bz2|lzma))'
++++ _install_xspec '!@(*.@(ks|jks|jceks|p12|pfx|bks|ubr|gkr|cer|crt|cert|p7b|pkipath|pem|p10|csr|crl)|cacerts)' portecle
++++ local 'xspec=!@(*.@(ks|jks|jceks|p12|pfx|bks|ubr|gkr|cer|crt|cert|p7b|pkipath|pem|p10|csr|crl)|cacerts)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!@(*.@(ks|jks|jceks|p12|pfx|bks|ubr|gkr|cer|crt|cert|p7b|pkipath|pem|p10|csr|crl)|cacerts)'
++++ _install_xspec '!*.@(mp[234c]|og[ag]|@(fl|a)ac|m4[abp]|spx|tta|w?(a)v|wma|aif?(f)|asf|ape)' kid3 kid3-qt
++++ local 'xspec=!*.@(mp[234c]|og[ag]|@(fl|a)ac|m4[abp]|spx|tta|w?(a)v|wma|aif?(f)|asf|ape)' cmd
++++ shift
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(mp[234c]|og[ag]|@(fl|a)ac|m4[abp]|spx|tta|w?(a)v|wma|aif?(f)|asf|ape)'
++++ for cmd in "$@"
++++ _xspecs[$cmd]='!*.@(mp[234c]|og[ag]|@(fl|a)ac|m4[abp]|spx|tta|w?(a)v|wma|aif?(f)|asf|ape)'
++++ unset -f _install_xspec
++++ complete -F _minimal ''
++++ complete -D -F _completion_loader
++++ compat_dir=/etc/bash_completion.d
++++ [[ -d /etc/bash_completion.d ]]
++++ [[ -r /etc/bash_completion.d ]]
++++ [[ -x /etc/bash_completion.d ]]
++++ for i in "$compat_dir"/*
++++ [[ apport_completion != @(@(#*#|*@(~|.@(bak|orig|rej|swp|dpkg*|rpm@(orig|new|save))))|Makefile*|@(acroread.sh)) ]]
++++ [[ -f /etc/bash_completion.d/apport_completion ]]
++++ [[ -r /etc/bash_completion.d/apport_completion ]]
++++ . /etc/bash_completion.d/apport_completion
+++++ complete -F _apport-bug -o filenames -o dirnames ubuntu-bug
+++++ complete -F _apport-bug -o filenames -o dirnames apport-bug
+++++ complete -F _apport-cli -o filenames -o dirnames apport-cli
+++++ complete -F _apport-unpack -o filenames -o dirnames apport-unpack
+++++ complete -F _apport-collect apport-collect
++++ for i in "$compat_dir"/*
++++ [[ git-prompt != @(@(#*#|*@(~|.@(bak|orig|rej|swp|dpkg*|rpm@(orig|new|save))))|Makefile*|@(acroread.sh)) ]]
++++ [[ -f /etc/bash_completion.d/git-prompt ]]
++++ [[ -r /etc/bash_completion.d/git-prompt ]]
++++ . /etc/bash_completion.d/git-prompt
+++++ [[ -e /usr/lib/git-core/git-sh-prompt ]]
+++++ . /usr/lib/git-core/git-sh-prompt
++++++ __git_printf_supports_v=
++++++ printf -v __git_printf_supports_v -- %s yes
++++ unset compat_dir i _blacklist_glob
++++ user_completion=/admin/home/armel/.bash_completion
++++ [[ /usr/share/bash-completion/bash_completion != /admin/home/armel/.bash_completion ]]
++++ [[ -r /admin/home/armel/.bash_completion ]]
++++ unset user_completion
++++ unset -f have
++++ unset have
++++ set +v
++++ unset BASH_COMPLETION_ORIGINAL_V_VALUE
+++ export PATH=/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+++ PATH=/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
++++ /fsx/armel/miniconda3/bin/conda shell.bash hook
+++ __conda_setup='export CONDA_EXE='\''/fsx/armel/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/fsx/armel/miniconda3/bin/python'\''
+
+# Copyright (C) 2012 Anaconda, Inc
+# SPDX-License-Identifier: BSD-3-Clause
+
+__conda_exe() (
+    "$CONDA_EXE" $_CE_M $_CE_CONDA "$@"
+)
+
+__conda_hashr() {
+    if [ -n "${ZSH_VERSION:+x}" ]; then
+        \rehash
+    elif [ -n "${POSH_VERSION:+x}" ]; then
+        :  # pass
+    else
+        \hash -r
+    fi
+}
+
+__conda_activate() {
+    if [ -n "${CONDA_PS1_BACKUP:+x}" ]; then
+        # Handle transition from shell activated with conda <= 4.3 to a subsequent activation
+        # after conda updated to >= 4.4. See issue #6173.
+        PS1="$CONDA_PS1_BACKUP"
+        \unset CONDA_PS1_BACKUP
+    fi
+    \local ask_conda
+    ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix "$@")" || \return
+    \eval "$ask_conda"
+    __conda_hashr
+}
+
+__conda_reactivate() {
+    \local ask_conda
+    ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix reactivate)" || \return
+    \eval "$ask_conda"
+    __conda_hashr
+}
+
+conda() {
+    \local cmd="${1-__missing__}"
+    case "$cmd" in
+        activate|deactivate)
+            __conda_activate "$@"
+            ;;
+        install|update|upgrade|remove|uninstall)
+            __conda_exe "$@" || \return
+            __conda_reactivate
+            ;;
+        *)
+            __conda_exe "$@"
+            ;;
+    esac
+}
+
+if [ -z "${CONDA_SHLVL+x}" ]; then
+    \export CONDA_SHLVL=0
+    # In dev-mode CONDA_EXE is python.exe and on Windows
+    # it is in a different relative location to condabin.
+    if [ -n "${_CE_CONDA:+x}" ] && [ -n "${WINDIR+x}" ]; then
+        PATH="$(\dirname "$CONDA_EXE")/condabin${PATH:+":${PATH}"}"
+    else
+        PATH="$(\dirname "$(\dirname "$CONDA_EXE")")/condabin${PATH:+":${PATH}"}"
+    fi
+    \export PATH
+
+    # We'\''re not allowing PS1 to be unbound. It must at least be set.
+    # However, we'\''re not exporting it, which can cause problems when starting a second shell
+    # via a first shell (i.e. starting zsh from bash).
+    if [ -z "${PS1+x}" ]; then
+        PS1=
+    fi
+fi
+
+conda activate base'
+++ '[' 0 -eq 0 ']'
+++ eval 'export CONDA_EXE='\''/fsx/armel/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/fsx/armel/miniconda3/bin/python'\''
+
+# Copyright (C) 2012 Anaconda, Inc
+# SPDX-License-Identifier: BSD-3-Clause
+
+__conda_exe() (
+    "$CONDA_EXE" $_CE_M $_CE_CONDA "$@"
+)
+
+__conda_hashr() {
+    if [ -n "${ZSH_VERSION:+x}" ]; then
+        \rehash
+    elif [ -n "${POSH_VERSION:+x}" ]; then
+        :  # pass
+    else
+        \hash -r
+    fi
+}
+
+__conda_activate() {
+    if [ -n "${CONDA_PS1_BACKUP:+x}" ]; then
+        # Handle transition from shell activated with conda <= 4.3 to a subsequent activation
+        # after conda updated to >= 4.4. See issue #6173.
+        PS1="$CONDA_PS1_BACKUP"
+        \unset CONDA_PS1_BACKUP
+    fi
+    \local ask_conda
+    ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix "$@")" || \return
+    \eval "$ask_conda"
+    __conda_hashr
+}
+
+__conda_reactivate() {
+    \local ask_conda
+    ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix reactivate)" || \return
+    \eval "$ask_conda"
+    __conda_hashr
+}
+
+conda() {
+    \local cmd="${1-__missing__}"
+    case "$cmd" in
+        activate|deactivate)
+            __conda_activate "$@"
+            ;;
+        install|update|upgrade|remove|uninstall)
+            __conda_exe "$@" || \return
+            __conda_reactivate
+            ;;
+        *)
+            __conda_exe "$@"
+            ;;
+    esac
+}
+
+if [ -z "${CONDA_SHLVL+x}" ]; then
+    \export CONDA_SHLVL=0
+    # In dev-mode CONDA_EXE is python.exe and on Windows
+    # it is in a different relative location to condabin.
+    if [ -n "${_CE_CONDA:+x}" ] && [ -n "${WINDIR+x}" ]; then
+        PATH="$(\dirname "$CONDA_EXE")/condabin${PATH:+":${PATH}"}"
+    else
+        PATH="$(\dirname "$(\dirname "$CONDA_EXE")")/condabin${PATH:+":${PATH}"}"
+    fi
+    \export PATH
+
+    # We'\''re not allowing PS1 to be unbound. It must at least be set.
+    # However, we'\''re not exporting it, which can cause problems when starting a second shell
+    # via a first shell (i.e. starting zsh from bash).
+    if [ -z "${PS1+x}" ]; then
+        PS1=
+    fi
+fi
+
+conda activate base'
++++ export CONDA_EXE=/fsx/armel/miniconda3/bin/conda
++++ CONDA_EXE=/fsx/armel/miniconda3/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/fsx/armel/miniconda3/bin/python
++++ CONDA_PYTHON_EXE=/fsx/armel/miniconda3/bin/python
++++ '[' -z x ']'
++++ conda activate base
++++ local cmd=activate
++++ case "$cmd" in
++++ __conda_activate activate base
++++ '[' -n '' ']'
++++ local ask_conda
+++++ PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+++++ __conda_exe shell.posix activate base
+++++ /fsx/armel/miniconda3/bin/conda shell.posix activate base
++++ ask_conda='PS1='\''(base) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '\''
+export PATH='\''/fsx/armel/miniconda3/bin:/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'\''
+export CONDA_PREFIX='\''/fsx/armel/miniconda3'\''
+export CONDA_SHLVL='\''3'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_PREFIX_2='\''/fsx/armel/miniconda3/envs/finetune'\''
+export CONDA_EXE='\''/fsx/armel/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/fsx/armel/miniconda3/bin/python'\'''
++++ eval 'PS1='\''(base) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '\''
+export PATH='\''/fsx/armel/miniconda3/bin:/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'\''
+export CONDA_PREFIX='\''/fsx/armel/miniconda3'\''
+export CONDA_SHLVL='\''3'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_PREFIX_2='\''/fsx/armel/miniconda3/envs/finetune'\''
+export CONDA_EXE='\''/fsx/armel/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/fsx/armel/miniconda3/bin/python'\'''
+++++ PS1='(base) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+++++ export PATH=/fsx/armel/miniconda3/bin:/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+++++ PATH=/fsx/armel/miniconda3/bin:/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+++++ export CONDA_PREFIX=/fsx/armel/miniconda3
+++++ CONDA_PREFIX=/fsx/armel/miniconda3
+++++ export CONDA_SHLVL=3
+++++ CONDA_SHLVL=3
+++++ export CONDA_DEFAULT_ENV=base
+++++ CONDA_DEFAULT_ENV=base
+++++ export 'CONDA_PROMPT_MODIFIER=(base) '
+++++ CONDA_PROMPT_MODIFIER='(base) '
+++++ export CONDA_PREFIX_2=/fsx/armel/miniconda3/envs/finetune
+++++ CONDA_PREFIX_2=/fsx/armel/miniconda3/envs/finetune
+++++ export CONDA_EXE=/fsx/armel/miniconda3/bin/conda
+++++ CONDA_EXE=/fsx/armel/miniconda3/bin/conda
+++++ export _CE_M=
+++++ _CE_M=
+++++ export _CE_CONDA=
+++++ _CE_CONDA=
+++++ export CONDA_PYTHON_EXE=/fsx/armel/miniconda3/bin/python
+++++ CONDA_PYTHON_EXE=/fsx/armel/miniconda3/bin/python
++++ __conda_hashr
++++ '[' -n '' ']'
++++ '[' -n '' ']'
++++ hash -r
+++ unset __conda_setup
++ conda activate finetune
++ local cmd=activate
++ case "$cmd" in
++ __conda_activate activate finetune
++ '[' -n '' ']'
++ local ask_conda
+++ PS1='(base) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+++ __conda_exe shell.posix activate finetune
+++ /fsx/armel/miniconda3/bin/conda shell.posix activate finetune
++ ask_conda='PS1='\''(finetune) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '\''
+export PATH='\''/fsx/armel/miniconda3/envs/finetune/bin:/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'\''
+export CONDA_PREFIX='\''/fsx/armel/miniconda3/envs/finetune'\''
+export CONDA_SHLVL='\''4'\''
+export CONDA_DEFAULT_ENV='\''finetune'\''
+export CONDA_PROMPT_MODIFIER='\''(finetune) '\''
+export CONDA_PREFIX_3='\''/fsx/armel/miniconda3'\''
+export CONDA_EXE='\''/fsx/armel/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/fsx/armel/miniconda3/bin/python'\'''
++ eval 'PS1='\''(finetune) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '\''
+export PATH='\''/fsx/armel/miniconda3/envs/finetune/bin:/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'\''
+export CONDA_PREFIX='\''/fsx/armel/miniconda3/envs/finetune'\''
+export CONDA_SHLVL='\''4'\''
+export CONDA_DEFAULT_ENV='\''finetune'\''
+export CONDA_PROMPT_MODIFIER='\''(finetune) '\''
+export CONDA_PREFIX_3='\''/fsx/armel/miniconda3'\''
+export CONDA_EXE='\''/fsx/armel/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/fsx/armel/miniconda3/bin/python'\'''
+++ PS1='(finetune) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+++ export PATH=/fsx/armel/miniconda3/envs/finetune/bin:/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+++ PATH=/fsx/armel/miniconda3/envs/finetune/bin:/opt/slurm/bin:/opt/slurm/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+++ export CONDA_PREFIX=/fsx/armel/miniconda3/envs/finetune
+++ CONDA_PREFIX=/fsx/armel/miniconda3/envs/finetune
+++ export CONDA_SHLVL=4
+++ CONDA_SHLVL=4
+++ export CONDA_DEFAULT_ENV=finetune
+++ CONDA_DEFAULT_ENV=finetune
+++ export 'CONDA_PROMPT_MODIFIER=(finetune) '
+++ CONDA_PROMPT_MODIFIER='(finetune) '
+++ export CONDA_PREFIX_3=/fsx/armel/miniconda3
+++ CONDA_PREFIX_3=/fsx/armel/miniconda3
+++ export CONDA_EXE=/fsx/armel/miniconda3/bin/conda
+++ CONDA_EXE=/fsx/armel/miniconda3/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/fsx/armel/miniconda3/bin/python
+++ CONDA_PYTHON_EXE=/fsx/armel/miniconda3/bin/python
++ __conda_hashr
++ '[' -n '' ']'
++ '[' -n '' ']'
++ hash -r
+++ date
++ echo 'START TIME: Tue Sep  5 22:31:08 UTC 2023'
+START TIME: Tue Sep  5 22:31:08 UTC 2023
++ GPUS_PER_NODE=1
+++ scontrol show hostnames ip-26-0-149-47
+++ head -n 1
++ MASTER_ADDR=ip-26-0-149-47
++ MASTER_PORT=6000
++ NNODES=1
++ NODE_RANK=0
++ WORLD_SIZE=1
++ export WANDB_PROJECT=test
++ WANDB_PROJECT=test
++ export HF_DATASETS_CACHE=/fsx/armel/.cache
++ HF_DATASETS_CACHE=/fsx/armel/.cache
++ PATH_TO_LOG=/fsx/armel/Self-instruct/logs/
++ LOG_PATH=/fsx/armel/Self-instruct/logs//test_log.txt
++ CMD='     main.py     --seed_tasks_path=data/code_tasks.jsonl     --output_data_path data/output.jsonl     --num_instructions_to_generate 10     --template_name default     --format 2     --model_name_or_path=bigcode/starcoderbase-1b     --num_prompt_instructions 8     --request_batch_size 2     --num_prompt_synthetic_instructions 1     --max_new_tokens 4096     --temperature 0.2     --top_p 0.95     --num_beams 1     --repetition_penalty 1.2     --threshold 0.7     --seed 42     --keep_programming     --use_tgi '
++ export 'LAUNCHER=python3 -u -m torch.distributed.run     --nproc_per_node 1     --nnodes 1     --rdzv_endpoint ip-26-0-149-47:6000     --rdzv_backend c10d     --max_restarts 0     --tee 3     '
++ LAUNCHER='python3 -u -m torch.distributed.run     --nproc_per_node 1     --nnodes 1     --rdzv_endpoint ip-26-0-149-47:6000     --rdzv_backend c10d     --max_restarts 0     --tee 3     '
++ export NCCL_ASYNC_ERROR_HANDLING=1
++ NCCL_ASYNC_ERROR_HANDLING=1
++ export NCCL_PROTO=simple
++ NCCL_PROTO=simple
++ export RDMAV_FORK_SAFE=1
++ RDMAV_FORK_SAFE=1
++ export FI_EFA_FORK_SAFE=1
++ FI_EFA_FORK_SAFE=1
++ export FI_EFA_USE_DEVICE_RDMA=1
++ FI_EFA_USE_DEVICE_RDMA=1
++ export FI_PROVIDER=efa
++ FI_PROVIDER=efa
++ export FI_LOG_LEVEL=1
++ FI_LOG_LEVEL=1
++ export NCCL_IB_DISABLE=1
++ NCCL_IB_DISABLE=1
++ export NCCL_SOCKET_IFNAME=ens
++ NCCL_SOCKET_IFNAME=ens
++ export CUDA_HOME=/usr/local/cuda-11.6
++ CUDA_HOME=/usr/local/cuda-11.6
++ export LD_PRELOAD=/usr/local/cuda-11.6/lib/libnccl.so
++ LD_PRELOAD=/usr/local/cuda-11.6/lib/libnccl.so
++ export LD_LIBRARY_PATH=/usr/local/cuda-11.6/efa/lib:/usr/local/cuda-11.6/lib:/usr/local/cuda-11.6/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/lib:/usr/lib:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/lib:/usr/lib:
++ LD_LIBRARY_PATH=/usr/local/cuda-11.6/efa/lib:/usr/local/cuda-11.6/lib:/usr/local/cuda-11.6/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/lib:/usr/lib:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/usr/local/cuda/efa/lib:/usr/local/lib:/usr/lib:
++ SRUN_ARGS='     --wait=60     --kill-on-bad-exit=1     '
++ clear
+[H[2J[3J+ srun --wait=60 --kill-on-bad-exit=1 --jobid 418662 bash -c 'python3 -u -m torch.distributed.run     --nproc_per_node 1     --nnodes 1     --rdzv_endpoint ip-26-0-149-47:6000     --rdzv_backend c10d     --max_restarts 0     --tee 3           main.py     --seed_tasks_path=data/code_tasks.jsonl     --output_data_path data/output.jsonl     --num_instructions_to_generate 10     --template_name default     --format 2     --model_name_or_path=bigcode/starcoderbase-1b     --num_prompt_instructions 8     --request_batch_size 2     --num_prompt_synthetic_instructions 1     --max_new_tokens 4096     --temperature 0.2     --top_p 0.95     --num_beams 1     --repetition_penalty 1.2     --threshold 0.7     --seed 42     --keep_programming     --use_tgi '
+[default0]:
+[default0]:===================================BUG REPORT===================================
+[default0]:Welcome to bitsandbytes. For bug reports, please run
+[default0]:
+[default0]:python -m bitsandbytes
+[default0]:
+[default0]: and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+[default0]:================================================================================
+[default0]:bin /fsx/armel/miniconda3/envs/finetune/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+[default0]:CUDA SETUP: CUDA runtime path found: /fsx/armel/miniconda3/envs/finetune/lib/libcudart.so
+[default0]:CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+[default0]:CUDA SETUP: Detected CUDA version 116
+[default0]:CUDA SETUP: Loading binary /fsx/armel/miniconda3/envs/finetune/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+[default0]:/fsx/armel/miniconda3/envs/finetune/lib/python3.10/site-packages/bitsandbytes/cuda_setup/main.py:145: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/fsx/armel/miniconda3/envs/finetune/lib/libcudart.so'), PosixPath('/fsx/armel/miniconda3/envs/finetune/lib/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
+[default0]:Either way, this might cause trouble in the future:
+[default0]:If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+[default0]:  warn(msg)
+[default0]:
+[default0]:Loaded 41 human-written seed instructions.
+[default0]:  0%|          | 0/10 [00:00<?, ?it/s][default0]:
+[default0]:
+[default0]:  0%|          | 0/2 [00:00<?, ?it/s][A[default0]:
+[default0]:
+[default0]: 50%|█████     | 1/2 [00:25<00:25, 25.78s/it][A
+[default0]:100%|██████████| 2/2 [00:25<00:00, 12.89s/it]
+[default0]:Request 1 took 26.34s
+[default0]:
+[default0]: 10%|█         | 1/10 [01:01<09:15, 61.67s/it][default0]:
+[default0]: 20%|██        | 2/10 [01:02<03:25, 25.63s/it][default0]:
+[default0]: 30%|███       | 3/10 [01:02<01:39, 14.20s/it][default0]:
+[default0]:Request 1's processing took 4.47s
+[default0]:Generated 22 instructions, kept 4 instructions
+[default0]: 40%|████      | 4/10 [01:03<00:54,  9.08s/it][default0]:
+[default0]:
+[default0]:  0%|          | 0/2 [00:00<?, ?it/s][A[default0]:
+[default0]:
+[default0]: 50%|█████     | 1/2 [00:47<00:47, 47.87s/it][A
+[default0]:100%|██████████| 2/2 [00:47<00:00, 23.94s/it]
+[default0]:Request 2 took 48.37s
+[default0]:
+[default0]:Request 2's processing took 4.39s
+[default0]:Generated 22 instructions, kept 1 instructions
+[default0]: 50%|█████     | 5/10 [01:56<02:04, 24.84s/it][default0]:
+[default0]:
+[default0]:  0%|          | 0/2 [00:00<?, ?it/s][A[default0]:
+[default0]:
+[default0]: 50%|█████     | 1/2 [00:17<00:17, 17.42s/it][A[default0]:
+[default0]:
+[default0]:100%|██████████| 2/2 [00:25<00:00, 11.75s/it][A
+[default0]:100%|██████████| 2/2 [00:25<00:00, 12.60s/it]
+[default0]:Request 3 took 25.68s
+[default0]:
+[default0]: 60%|██████    | 6/10 [02:24<01:43, 25.95s/it][default0]:
+[default0]:Request 3's processing took 4.64s
+[default0]:Generated 23 instructions, kept 2 instructions
+[default0]: 70%|███████   | 7/10 [02:25<00:52, 17.66s/it][default0]:
+[default0]:
+[default0]:  0%|          | 0/2 [00:00<?, ?it/s][A[default0]:
+[default0]:
+[default0]: 50%|█████     | 1/2 [01:06<01:06, 66.27s/it][A
+[default0]:100%|██████████| 2/2 [01:06<00:00, 33.13s/it]
+[default0]:Request 4 took 66.75s
+[default0]:
+[default0]: 80%|████████  | 8/10 [03:36<01:09, 34.57s/it][default0]:
+[default0]:Request 4's processing took 4.38s
+[default0]:Generated 22 instructions, kept 2 instructions
+[default0]: 90%|█████████ | 9/10 [03:38<00:24, 24.38s/it][default0]:
+[default0]:
+[default0]:  0%|          | 0/2 [00:00<?, ?it/s][A[default0]:
+[default0]:
+[default0]: 50%|█████     | 1/2 [00:26<00:26, 26.06s/it][A
+[default0]:100%|██████████| 2/2 [00:26<00:00, 13.03s/it]
+[default0]:Request 5 took 26.54s
+[default0]:
+[default0]:100%|██████████| 10/10 [04:06<00:00, 25.73s/it][default0]:
+[default0]:Request 5's processing took 4.43s
+[default0]:Generated 22 instructions, kept 2 instructions
+[default0]:11it [04:09, 18.53s/it]                        [default0]:
+[default0]:11it [04:11, 22.85s/it]
+++ date
++ echo 'END TIME: Tue Sep  5 22:35:51 UTC 2023'
+END TIME: Tue Sep  5 22:35:51 UTC 2023

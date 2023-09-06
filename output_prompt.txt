@@ -1,9 +1,0 @@
-You are asked to come up with a set of 20 diverse output of task instructions. These task outputs will be given to a language model and we will evaluate the model for computing the instruction which generated them.
-
-Here are the requirements:
-1. A language model should be able to complete the instruction. For example, do not ask the assistant to create any visual or audio output. For another example, do not ask the assistant to wake you up at 5pm or set a reminder because it cannot perform any action.
-2. The instructions should be in English.
-3. The instructions should be 1 to 2 sentences long. Either an imperative sentence or a question is permitted.
-4. The output instruction should be such that the output is an an appropriate response to the instruction.
-
-List of 20 tasks:

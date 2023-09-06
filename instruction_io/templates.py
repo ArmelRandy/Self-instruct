@@ -1,4 +1,0 @@
-
-INSTRUCTION = "Instruction"
-
-OUTPUT = "Output"
