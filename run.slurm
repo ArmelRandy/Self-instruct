@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --exclusive
 #SBATCH --cpus-per-task=48
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:8
 #SBATCH --partition=production-cluster
 #SBATCH --output=/fsx/armel/Self-instruct/logs/%x-%j.out
 #SBATCH --mem-per-cpu=11G
@@ -18,7 +18,7 @@ conda activate finetune
 echo "START TIME: $(date)"
 
 # Training setup
-GPUS_PER_NODE=1
+GPUS_PER_NODE=8
 # so processes know who to talk to
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
@@ -37,11 +37,11 @@ LOG_PATH=$PATH_TO_LOG/test_log.txt
 CMD=" \
     main.py \
     --seed_tasks_path="data/code_tasks.jsonl" \
-    --output_data_path data/output.jsonl \
+    --output_data_path data/bi/code_llama_13b/output.jsonl \
     --num_instructions_to_generate 20000 \
     --template_name better \
     --format 2 \
-    --model_name_or_path="bigcode/starcoderbase-1b" \
+    --model_name_or_path="codellama/CodeLlama-13b-hf" \
     --num_prompt_instructions 8 \
     --request_batch_size 8 \
     --num_prompt_synthetic_instructions 2 \
@@ -53,8 +53,8 @@ CMD=" \
     --threshold 0.7 \
     --seed 42 \
     --keep_programming \
-    --use_tgi \
 "
+#    --use_tgi \
 
 #CMD=" \
 #    processing.py \

@@ -14,11 +14,10 @@ class Template:
     Output :
     {output}
     """
-
     instruction_token: str = "Instruction"
     input_token: str = "Input"
     output_token: str = "Output"
-
+    
     def get_triprompt(self, example, prefix="") -> str:
         """
         takes as input a dictionary, i.e. a seed example with an instruction, its input and its output.

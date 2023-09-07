@@ -28,7 +28,8 @@ def run_eval(inputs):
             "do_sample": True,
             "top_p": top_p,
             "temperature": temperature,
-            "best_of" : 1
+            "best_of" : 1,
+            #"stop" :
         },
     }
     headers = {

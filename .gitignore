@@ -1,0 +1,11 @@
+# python cache
+__pycache__/
+
+# All jsonl files
+data/bi/code_llama_13b/*.jsonl
+
+# logs folder
+logs/
+
+# slurm files
+*.slurm

@@ -1,14 +1,9 @@
 import os
 import json
-import random
-import re
-import string
 import tqdm
-import argparse
 import numpy as np
 import pandas as pd
 from multiprocessing import Pool
-from functools import partial
 from rouge_score import rouge_scorer
 from sentence_transformers import SentenceTransformer, util
 
@@ -26,7 +21,7 @@ from utils import *
 similarity_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 df = pd.DataFrame(columns=["rouge score", "sbert score"], data=np.zeros((10, 2)))
 if __name__ == "__main__":
-    # os.environ["TOKENIZERS_PARALLELISM"] = "false"
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
     args = parse_args_for_post_processing()
     rng = np.random.default_rng(args.seed)
     set_seed(args.seed)
@@ -61,7 +56,7 @@ if __name__ == "__main__":
                 instruction_info = json.loads(line)
                 machine_instructions.append(instruction_info)
         print(f"Loaded {len(machine_instructions)} machine-generated instructions")
-    # check if there is already a file containing the scores
+    # check if the output file exists and is not empty, read its content and start accordingly
     start = 0
     if os.path.exists(args.output_data_path):
         with open(args.output_data_path, "r") as fin:
@@ -132,8 +127,7 @@ if __name__ == "__main__":
                 end_of_prompt + len(anchor) :
             ].strip()
             if predicted_instruction.endswith("###"):
-                predicted_instruction = predicted_instruction[::-3]
-            print(f"PREDICTION\n{predicted_instruction}")
+                predicted_instruction = predicted_instruction[:-3]
             instructions.append({"instruction": predicted_instruction})
 
         process_duration = time.time() - process_start
@@ -142,7 +136,8 @@ if __name__ == "__main__":
             output_dictionary[instruction] = []
             L.append(i)
             if accelerator.is_main_process:
-                fout.write(json.dumps(output_dictionary) + "\n")
+                with open(args.output_data_path, "a") as fout:
+                    fout.write(json.dumps(output_dictionary) + "\n")
             continue
         for candidate in instructions:
             rouge_score = rouge_scorer._score_lcs(

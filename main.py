@@ -98,8 +98,8 @@ if __name__ == "__main__":
                 - args.num_prompt_synthetic_instructions,
                 replace=False,
             )
+            # sample machine generated instructions
             if len(machine_instructions) >= args.num_prompt_synthetic_instructions:
-                # sample machine generated instructions
                 synthetic_indices = rng.choice(
                     a=np.arange(len(machine_instructions)),
                     size=args.num_prompt_synthetic_instructions,
