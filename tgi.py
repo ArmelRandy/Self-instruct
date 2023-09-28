@@ -90,8 +90,9 @@ if __name__ == "__main__":
         "What is the capital of Ethiopia?",
         "What is the capital of Rwanda?",
     ]
-    hf_token = os.environ.get("HF_TOKEN", "<YOUR TOKEN HERE>")
-    api_url = os.environ.get("API_URL", "<YOUR API URL HERE>")
+    hf_token = os.environ.get("HF_TOKEN", "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")
+    #api_url = os.environ.get("API_URL", "https://5f291ab78597e2ee.ngrok.app")
+    api_url = os.environ.get("API_URL", "https://api-inference.huggingface.co/models/codellama/CodeLlama-13b-hf")
     inputs = [
         (prompt, hf_token, api_url, args.max_new_tokens, args.temperature, args.top_p, logger)
         for prompt in prompts

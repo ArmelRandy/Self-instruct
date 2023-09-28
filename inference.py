@@ -60,6 +60,7 @@ def make_requests(
     num_beams,
     repetition_penalty,
 ):
+    accelerator.free_memory()
     results = []
     if isinstance(prompts, list):
         pass

@@ -37,11 +37,11 @@ LOG_PATH=$PATH_TO_LOG/test_log.txt
 CMD=" \
     main.py \
     --seed_tasks_path="data/code_tasks.jsonl" \
-    --output_data_path data/bi/code_llama_13b/output.jsonl \
+    --output_data_path data/bi/code_llama_34b/output.jsonl \
     --num_instructions_to_generate 20000 \
     --template_name better \
     --format 2 \
-    --model_name_or_path="codellama/CodeLlama-13b-hf" \
+    --model_name_or_path="codellama/CodeLlama-34b-hf" \
     --num_prompt_instructions 8 \
     --request_batch_size 8 \
     --num_prompt_synthetic_instructions 2 \
